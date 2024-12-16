@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from ml_service import find_answer
 
 app = FastAPI()
 
@@ -8,8 +9,8 @@ class QuestionRequest(BaseModel):
 
 @app.post("/predict")
 def predict(request: QuestionRequest):
-    request = QuestionRequest("How are u?")
-    
     question = request.question
-    response = f"Ответ на вопрос '{question}' связан с МИФИ."
+    answer = find_answer(question)
+    
+    response = answer[0]
     return {"answer": response}
