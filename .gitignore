@@ -29,3 +29,4 @@ mephi_bot.log
 .venv.example
 .vscode
 .vscode.example
+__pycache__

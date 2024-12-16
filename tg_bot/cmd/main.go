@@ -20,23 +20,15 @@ func main() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	_ = log
 
 	token := config.LoadEnv("TOKEN", "")
 
-	_ = token
-
 	tgClient, err := tg_bot.New(token, log)
 	if err != nil {
-		log.Error("start bot failed", zap.Error(err))
+		log.Error("create bot failed", zap.Error(err))
 	}
 
+	tgClient.NewML(cfg.MLService.URL)
+
 	tgClient.Start()
-	// tgClient := telegram.New(token)
-
-	// fetcher := fetcher.New()
-
-	// processor := processor.New()
-	// consumer.start(fetcher, processor)
-
 }

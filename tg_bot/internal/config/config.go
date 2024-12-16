@@ -9,7 +9,7 @@ import (
 
 type Config struct {
 	LogPath   string `yaml:"log_path"`
-	MLService string `yaml:"ml_service"`
+	MLService `yaml:"ml_service"`
 }
 
 type MLService struct {

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 
 	"github.com/anatolygg/tg_bot/internal/model"
@@ -23,12 +24,14 @@ func (m *MLModel) GetAnswer(question string) (string, error) {
 
 	resp, err := http.Post(m.url, "application/json", bytes.NewBuffer(requestBody))
 	if err != nil {
+		slog.Error("err: ", slog.Any("err: ", err))
 		return "", err
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
+		slog.Error("body: ", slog.Any("err: ", err))
 		return "", fmt.Errorf("read answer failed: %w", err)
 	}
 

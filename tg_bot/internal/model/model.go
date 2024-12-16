@@ -1,9 +1,9 @@
 package model
 
 type MLRequest struct {
-	Question string `yaml:"question"`
+	Question string `json:"question"`
 }
 
 type MLResponse struct {
-	Answer string `yaml:"answer"`
+	Answer string `json:"answer"`
 }
